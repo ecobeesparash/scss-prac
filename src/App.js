@@ -1,10 +1,13 @@
 import "./App.css";
-import Login from "./components/common/Login";
+import Sidenav from "./components/common/Sidenav";
+// import Login from "./components/common/Login";
+import OrderPage from "./components/pages/orders/OrderPage";
 
 function App() {
   return (
-    <div className="App">
-      <Login />
+    <div className="app d-flex">
+      <Sidenav/>  
+      <OrderPage/>
     </div>
   );
 }
