@@ -1,0 +1,24 @@
+.a-menuLinks__link{
+
+    svg {
+        font-size: 24px;
+    }
+
+    &:hover{
+        color: #64B0B2;
+    }
+
+    &:active{
+        color: #64B0B2;
+    }
+
+    span{
+        background-color: red;
+        color: white;   
+        border-radius: 50%;
+        border: none;
+        height: 15px;
+        padding: 10px;
+        
+    }
+}
