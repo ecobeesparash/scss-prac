@@ -1,13 +1,14 @@
-.o-loginContainer{
+.o-loginContainer__section{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: none;
 }
 
 $library-colors: (
 	btn-primary: #fdc886,
 	// secondary : #4B0082,
 	bg-primary : #ffffff,
-    text-primary : #101010,
-
+  text-primary : #101010,
+  transparent : transparent,
 );
 
 @each $color, $value in $library-colors{
@@ -128,17 +129,18 @@ $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
   }
 }
 
-$width: (1200, 900, 700, 500, 400, 300);
+$width: (100, 70, 50, 30, 10);
 @each $wid in $width {
     .w-#{$wid} {
-        width: #{$wid}px;
+        width: #{$wid}#{"%"};
     }
 }
 
 
-$radius: (14, 20, 50 );
+$radius: (6, 10, 14, 22, 26,50 );
 @each $rad in $radius {
-    .border-#{$rad} {
+    .border-#{$rad} { 
+        border: 1px solid lightgrey;  
         border-radius: #{$rad}px ;
     }
 }
@@ -202,10 +204,10 @@ $font-sizes : (
 // Weights
 $font-weights : ( 
     bold :  700 , 
-    ' semi-bold ' :  600 , 
+    medium:  500 , 
     light :  300 
 ); 
-@each $weight in 'light' 'semi-bold' 'bold' {
+@each $weight in 'light' 'medium' 'bold' {
 	.fw-#{$weight} {
 		font-weight: map-get($font-weights, $weight);
 	}
