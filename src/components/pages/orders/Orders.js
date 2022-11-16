@@ -1,5 +1,6 @@
 import React from "react";
 import StatusButton from "../../core/StatusButton";
+import Icons from "../../../assets/Icons";
 
 function Orders() {
   return (
@@ -16,18 +17,33 @@ function Orders() {
             <li className=" ">All Orders</li>
           </ul>
 
-          <p className="fs-small color-text-secondary">Showing 8-10 out of 80 results</p>
+          <p className="fs-small color-text-secondary">
+            Showing 8-10 out of 80 results
+          </p>
         </div>
 
         <hr className="my-1 b-1" />
 
         <div className="m-filterBar__div bgcolor-bg-secondary border-6 p-1 mb-2 d-flex justify-space-between">
-          <input className="p-1 border-10 b-1" type="search" placeholder="Search" />
+          <input
+            className="p-1 border-10 b-1 w-50"
+            type="search"
+            placeholder="Search"
+          />
 
-          <ul className="d-flex gap-20 ">
-            <button className="p-1 b-1 border-14 bgcolor-bg-primary color-text-secondary" >Filter</button>
-            <button className="p-1 b-1 border-14 bgcolor-bg-primary color-text-secondary">Filter</button>
-            <button className="p-1 b-1 border-14 bgcolor-bg-primary color-text-secondary">Export</button>
+          <ul className="a-filterBtns__list d-flex gap-20 w-30 justify-flex-end">
+            <button className="b-1 border-14 w-30 bgcolor-bg-primary color-text-secondary d-flex">
+              <button className="w-50 b-none border-tl-14 border-bl-14 bgcolor-bg-primary">{Icons.ListIcon}</button> 
+              <button className="w-50 b-none border-tr-14 border-br-14 bgcolor-bg-primary">{Icons.GridIcon} </button>
+            </button>
+
+            <button className="p-1 b-1 border-14 bgcolor-bg-primary color-text-secondary">
+             {Icons.FilterIcon} Filter
+            </button>
+
+            <button className="p-1 b-1 border-14 bgcolor-bg-primary color-text-secondary">
+            {Icons.ExportIcon} Export
+            </button>
           </ul>
         </div>
 
@@ -45,7 +61,7 @@ function Orders() {
             <td className="w-12 text-left">#3444</td>
 
             <td className="w-20 text-left">Parash Shahi</td>
-           
+
             <td className="w-20 text-left">
               <p>Nepal</p>
               <span className="fs-small color-text-secondary">Kathmandu</span>
@@ -55,11 +71,11 @@ function Orders() {
               <p>Nepal</p>
               <span className="fs-small color-text-secondary">Kathmandu</span>
             </td>
-            
+
             <td className="w-12 text-left">01/11/2121</td>
-            
+
             <td className="w-10 text-left">
-              <StatusButton status="Delivered"/>
+              <StatusButton status="Delivered" />
             </td>
           </tbody>
         </table>

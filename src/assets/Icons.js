@@ -8,11 +8,11 @@ import {
   import { HiOutlineBell, HiOutlineMail } from "react-icons/hi";
   import { VscGraph } from "react-icons/vsc";
   import { BiPointer } from "react-icons/bi";
-  import { TiTicket } from "react-icons/ti";
-  import { BsPerson, BsPeople, BsFolder } from "react-icons/bs";
+  import { TiTicket, TiExportOutline } from "react-icons/ti";
+  import { BsPerson, BsPeople, BsFolder, BsFillGridFill, BsFilterLeft } from "react-icons/bs";
   import { TbReportSearch, TbSettings, TbLogout } from "react-icons/tb";
   import { MdArrowForwardIos } from "react-icons/md";
-  import { FaBars } from "react-icons/fa";
+  import { FaBars, FaList } from "react-icons/fa";
   
   const Icons = {
     SearchIcon: <CgSearch />,
@@ -33,6 +33,10 @@ import {
     DownArrowIcon: <AiOutlineArrowDown />,
     RightArrowIcon: <MdArrowForwardIos />,
     BarsIcon: <FaBars />,
+    ListIcon: <FaList/>,
+    GridIcon: <BsFillGridFill/>,
+    FilterIcon: <BsFilterLeft/>,
+    ExportIcon: <TiExportOutline/>,
   };
   
   export default Icons;
