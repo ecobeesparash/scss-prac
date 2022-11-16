@@ -153,6 +153,10 @@ $border: (1, 2, "none");
   .bl-#{$bor} {
     border-left: #{$bor}px solid lightgrey;
   }
+
+  .bb-#{$bor} {
+    border-bottom:  #{$bor}px solid lightgrey;
+  }
 }
 
 $radius: (0, 6, 10, 14, 22, 26, 50);

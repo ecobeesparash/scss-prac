@@ -1,0 +1,42 @@
+[
+    {
+        "id":"#2322",
+        "customer":"Parash Mani Shahi",
+        "country":"Nepal",
+        "address":"Kathmandu",
+        "product":"Iphone",
+        "detail":"Kinyo",
+        "date": "10/11/2020",
+        "status":"Delivered"
+    },
+    {
+        "id":"#2422",
+        "customer":"Bikash Chaudary",
+        "country":"Nepal",
+        "address":"Tokha",
+        "product":"Iphone",
+        "detail":"Kinis ta",
+        "date": "10/11/3020",
+        "status":"Prepared"
+    },
+    {
+        "id":"#2722",
+        "customer":"Siddhant Karki",
+        "country":"Nepal",
+        "address":"Kathmandu",
+        "product":"Samsung",
+        "detail":"Goodjob",
+        "date": "10/11/2120",
+        "status":"Prepared"
+    },
+    {
+        "id":"#2228",
+        "customer":"Ayush Acharya",
+        "country":"Nepal",
+        "address":"Kathmandu",
+        "product":"Apple",
+        "detail":"Badhai xa",
+        "date": "10/11/2020",
+        "status":"Completed"
+    }
+]
