@@ -59,7 +59,7 @@ function Orders() {
             <td className="w-12 text-left">01/11/2121</td>
             
             <td className="w-10 text-left">
-              <StatusButton status="delivered"/>
+              <StatusButton status="Delivered"/>
             </td>
           </tbody>
         </table>
