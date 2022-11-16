@@ -1,31 +1,30 @@
 $library-colors: (
-	text-tertiary: #64B0B2,
-	bg-primary : #ffffff,
-    bg-secondary: #f6f6f6,
-    text-primary : #101010,
-    text-secondary: grey,
-    transparent : transparent,
+  text-tertiary: #64b0b2,
+  bg-primary: #ffffff,
+  bg-secondary: #f6f6f6,
+  text-primary: #101010,
+  text-secondary: grey,
+  transparent: transparent,
 );
-@each $color, $value in $library-colors{
-	.color-#{$color} {
-		color: $value;
-	}
+@each $color, $value in $library-colors {
+  .color-#{$color} {
+    color: $value;
+  }
 
-	.bgcolor-#{ #{$color} }{
-		background-color: $value;
-	}
+  .bgcolor-#{ #{$color} } {
+    background-color: $value;
+  }
 
-	.colorborder-#{ #{$color} }{
-		border-width: 1px;
-		border-style: solid;
-		border-color: $value;
-	}
+  .colorborder-#{ #{$color} } {
+    border-width: 1px;
+    border-style: solid;
+    border-color: $value;
+  }
 }
 
 $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
 @each $space in $spaceAmounts {
   @if $space == auto {
-
     .m-#{$space} {
       margin: #{$space};
     }
@@ -38,7 +37,6 @@ $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
     .my-#{$space} {
       margin-top: #{$space};
       margin-bottom: #{$space};
-
     }
 
     .ml-#{$space} {
@@ -56,9 +54,7 @@ $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
     .mt-#{$space} {
       margin-top: #{$space};
     }
-  }
-
-  @else {
+  } @else {
     .m-#{$space} {
       margin: #{$space}rem;
     }
@@ -71,7 +67,6 @@ $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
     .my-#{$space} {
       margin-top: #{$space}rem;
       margin-bottom: #{$space}rem;
-
     }
 
     .ml-#{$space} {
@@ -102,7 +97,6 @@ $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
     .py-#{$space} {
       padding-top: #{$space}rem;
       padding-bottom: #{$space}rem;
-
     }
 
     .pl-#{$space} {
@@ -125,58 +119,102 @@ $spaceAmounts: (1, 2, 3, 4, 5, 6, 7, 8, auto);
 
 $width: (100, 90, 70, 50, 30, 27, 20, 16, 14, 12, 10, 5, 3);
 @each $wid in $width {
-    .w-#{$wid} {
-        width: #{$wid}#{"%"};
-    }
-    .h-#{$wid} {
-        height: #{$wid}vh;
-    }
+  .w-#{$wid} {
+    width: #{$wid}#{"%"};
+  }
+  .h-#{$wid} {
+    height: #{$wid}vh;
+  }
 }
 
-$spacing:(10, 20, 30, 40);
+$spacing: (10, 20, 30, 40);
 @each $space in $spacing {
-    .gap-#{$space} {
-        gap: #{$space}px;
-    }
+  .gap-#{$space} {
+    gap: #{$space}px;
+  }
 }
 
-$border: ( 1, 2, 'none');
+$border: (1, 2, "none");
 @each $bor in $border {
-    @if $bor == none {
-        .b-#{$bor}{
-            border: none;
-        }
-    }
+  @if $bor == none {
     .b-#{$bor} {
-        border: #{$bor}px solid lightgrey;
+      border: none;
     }
+  }
+
+  .b-#{$bor} {
+    border: #{$bor}px solid lightgrey;
+  }
+
+  .br-#{$bor} {
+    border-right: #{$bor}px solid lightgrey;
+  }
+
+  .bl-#{$bor} {
+    border-left: #{$bor}px solid lightgrey;
+  }
 }
 
-$radius: (6, 10, 14, 22, 26, 50 );
+$radius: (0, 6, 10, 14, 22, 26, 50);
 @each $rad in $radius {
-    .border-#{$rad} { 
-        // border: none;  
-        border-radius: #{$rad}px ;
-    }
+  .border-#{$rad} {
+    // border: none;
+    border-radius: #{$rad}px;
+  }
+  .border-tl-#{$rad} {
+    border-top-left-radius: #{$rad}px;
+  }
+
+  .border-tr-#{$rad} {
+    border-top-right-radius: #{$rad}px;
+  }
+
+  .border-bl-#{$rad} {
+    border-bottom-left-radius: #{$rad}px;
+  }
+
+  .border-br-#{$rad} {
+    border-bottom-right-radius: #{$rad}px;
+  }
 }
 
 //display
-$displayProps: ("block", "inline-block", "inline", "flex", "grid", "inline-flex", "inline-grid", "table", "inline-table", "list-item", "none", "contents");
+$displayProps: (
+  "block",
+  "inline-block",
+  "inline",
+  "flex",
+  "grid",
+  "inline-flex",
+  "inline-grid",
+  "table",
+  "inline-table",
+  "list-item",
+  "none",
+  "contents"
+);
 @each $disp in $displayProps {
   .d-#{$disp} {
     display: #{$disp};
   }
 }
 
-$direction: ("column","row");
+$direction: ("column", "row");
 @each $direct in $direction {
-    .direction-#{$direct} {
-        flex-direction: #{$direct};
-    }
+  .direction-#{$direct} {
+    flex-direction: #{$direct};
+  }
 }
 
 //alignment
-$alignments: ("center", "space-between", "space-around", "space-evenly", "flex-start", "flex-end");
+$alignments: (
+  "center",
+  "space-between",
+  "space-around",
+  "space-evenly",
+  "flex-start",
+  "flex-end"
+);
 @each $align in $alignments {
   .justify-#{$align} {
     justify-content: #{$align};
@@ -193,7 +231,6 @@ $alignments: ("center", "space-between", "space-around", "space-evenly", "flex-s
   .content-#{$align} {
     align-content: #{$align};
   }
-
 }
 
 $textAlignments: ("left", "right", "center", "revert");
@@ -204,28 +241,28 @@ $textAlignments: ("left", "right", "center", "revert");
 }
 
 // Sizes
-$font-sizes : ( 
-	tiny :  12px , 
-	small :  14px , 
-	regular :  18px , 
-	medium :  22px , 
-	large :  26px , 
-	xlarge :  30px , 
-); 
-@each $size in 'tiny' 'small'  'regular'  'medium'  'large'  'xlarge' {
-	.fs-#{$size} {
-		font-size: map-get($font-sizes, $size);
-	}
+$font-sizes: (
+  tiny: 12px,
+  small: 14px,
+  regular: 18px,
+  medium: 22px,
+  large: 26px,
+  xlarge: 30px,
+);
+@each $size in "tiny" "small" "regular" "medium" "large" "xlarge" {
+  .fs-#{$size} {
+    font-size: map-get($font-sizes, $size);
+  }
 }
 
 // Weights
-$font-weights : ( 
-    bold :  700 , 
-    medium:  500 , 
-    light :  300 
-); 
-@each $weight in 'light' 'medium' 'bold' {
-	.fw-#{$weight} {
-		font-weight: map-get($font-weights, $weight);
-	}
+$font-weights: (
+  bold: 700,
+  medium: 500,
+  light: 300,
+);
+@each $weight in "light" "medium" "bold" {
+  .fw-#{$weight} {
+    font-weight: map-get($font-weights, $weight);
+  }
 }

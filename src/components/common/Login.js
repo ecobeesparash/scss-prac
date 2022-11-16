@@ -29,7 +29,7 @@ function Login() {
             placeholder="Passcode"
           />
 
-          <a className="m-loginTrouble__link color-text-primary text-left fw-medium" href="">
+          <a className="m-loginTrouble__link color-text-primary text-left fw-medium" href="1">
             Having trouble to sign in?
           </a>  
 
@@ -56,7 +56,7 @@ function Login() {
 
         <p className="m-signup__text">
           Don't have an account? &nbsp;
-          <a className="color-text-primary fw-medium" href="">
+          <a className="color-text-primary fw-medium" href="1">
             Request now
           </a>
         </p>
