@@ -43,7 +43,7 @@ function Orders() {
 
             <li>All Orders</li>
 
-            <li className=" ">All Orders</li>
+            <li className=" ">All Orders</li> 
           </ul>
 
           <p className="fs-small color-text-secondary">
@@ -57,7 +57,7 @@ function Orders() {
           <input
             className="p-1 border-10 b-1 w-50"
             type="search"
-            placeholder="Search"
+            placeholder="Search Order, customer, address, product, date, status"
             onChange={(e) => setSearch(e.target.value)}
           />
 
