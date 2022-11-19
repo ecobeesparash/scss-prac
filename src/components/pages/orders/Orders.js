@@ -1,37 +1,51 @@
 import React, { useState } from "react";
-import StatusButton from "../../core/StatusButton";
+// import StatusButton from "../../core/StatusButton";
 import Icons from "../../../assets/Icons";
-import Data from "../../../assets/data.json";
 
 const tableHead = [
-  "ORDER ID",
-  "CUSTOMER",
-  "ADDRESS",
-  "PRODUCT",
-  "Date Order",
-  "STATUS",
+  "Full Name",
+  "Username",
+  "Email",
+  "Location",
+  "Phone",
+  "Date Of Birth (Age)",
+  "Gender",
 ];
 
 const dataHead = [
-  "id",
-  "customer",
-  "country",
-  "address",
-  "product",
-  "detail",
-  "date",
-  "status",
+  // "first",
+  // "name.last",
+  "gender",
+  "email",
+  // "dob.date",
+  "cell",
+  "phone",
+  // "location.city",
 ];
 
 function Orders() {
   const [search, setSearch] = useState("");
+
+  const [info, setInfo] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://randomuser.me/api/?results=20")
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data.results);
+        setInfo(data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const filterData = (data) => {
     return data.filter((item) =>
       dataHead.some((key) => item[key].toLowerCase().includes(search))
     );
   };
-  // console.log(search);
+
   return (
     <>
       <div className="o-ordersMain__div border-26 mx-2 py-2 px-3 bgcolor-bg-primary ">
@@ -43,7 +57,7 @@ function Orders() {
 
             <li>All Orders</li>
 
-            <li className=" ">All Orders</li> 
+            <li className=" ">All Orders</li>
           </ul>
 
           <p className="fs-small color-text-secondary">
@@ -57,7 +71,7 @@ function Orders() {
           <input
             className="p-1 border-10 b-1 w-50"
             type="search"
-            placeholder="Search Order, customer, address, product, date, status"
+            placeholder="Search email, phone, gender "
             onChange={(e) => setSearch(e.target.value)}
           />
 
@@ -81,17 +95,54 @@ function Orders() {
           </ul>
         </form>
 
-        <table className="m-tableInfo__table w-100">
+        <table className="m-tableInfo__table w-100 b-1 border-10">
           <thead>
-            <tr className="a-tableHead__text d-flex justify-space-between bgcolor-bg-secondary border-6 px-2 py-1">
+            <tr className="a-tableHead__text bgcolor-bg-secondary border-6 ">
               {tableHead.map((head) => {
-                return <th className="w-16 text-left">{head}</th>;
+                return <th className="w-16 text-center px-1 py-1">{head}</th>;
               })}
             </tr>
           </thead>
 
-          <tbody className="a-tableBody__text">
-            {filterData(Data).map((record) => {
+          <tbody>
+            {filterData(info).map((record) => {
+              return (
+                <tr key={record.id} className="items-center bb-1">
+                  <td className=" w-16 px-1 py-2 text-center">
+                    {record.name.title}. {record.name.first} {record.name.last}
+                  </td>
+
+                  <td className="px-1 text-center">{record.login.username}</td>
+
+                  <td className="px-1 text-center">{record.email}</td>
+
+                  <td className="px-1 text-center">
+                    <p>{record.location.state}</p>
+                    <span className="fs-small color-text-secondary">
+                      {record.location.city}
+                    </span>
+                  </td>
+
+                  <td className=" px-1 text-center">
+                    <p>{record.phone}</p>
+                    <span className="fs-small color-text-secondary">
+                      {record.cell}
+                    </span>
+                  </td>
+
+                  <td className=" px-1 text-center">
+                    {record.dob.date} ({record.dob.age})
+                  </td>
+
+                  <td className=" px-1 text-center">
+                    {record.gender}
+                    {/* <StatusButton status={record.status} /> */}
+                  </td>
+                </tr>
+              );
+            })}
+
+            {/* {filterData(info).map((record) => {
               return (
                 <tr
                   key={record.id}
@@ -122,7 +173,7 @@ function Orders() {
                   </td>
                 </tr>
               );
-            })}
+            })} */}
           </tbody>
         </table>
       </div>
