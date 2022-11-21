@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import Icons from "../../../assets/Icons";
 import ReactHtmlTableToExcel from "react-html-table-to-excel";
 
-const dataHead = ["gender", "email", "cell", "phone"];
+const dataHead = [
+  "gender",
+  "email",
+  "username",
+  "phone",
+  "name",
+  "location",
+  "dob",
+];
 
 function Orders() {
   const [search, setSearch] = useState("");
@@ -14,13 +22,33 @@ function Orders() {
   React.useEffect(() => {
     fetch("https://randomuser.me/api/?results=5")
       .then((response) => response.json())
+
       .then((data) => {
-        setInfo(data.results);
+        const result = data.results.map((item) => {
+          return {
+            username: `${item.login.username}`,
+            email: item.email,
+            name: `${item.name.title} ${item.name.first} ${item.name.last}`,
+            location: `${item.location.city} - ${item.location.street.name}`,
+            dob: item.dob.date,
+            gender: item.gender,
+            phone: item.phone,
+          };
+        });
+        console.log(result);
+        return { result };
       })
+
+      .then(({ result }) => {
+        setInfo(result);
+      })
+
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  console.log(info);
 
   const [order, setOrder] = React.useState("asc");
 
@@ -115,7 +143,7 @@ function Orders() {
                 Full Name
               </th>
               <th
-                // onClick={() => sortData("username")}
+                onClick={() => sortData("username")}
                 className="w-16 text-center px-1 py-1"
               >
                 Username
@@ -127,7 +155,7 @@ function Orders() {
                 Email
               </th>
               <th
-                // onClick={() => sortData("location")}
+                onClick={() => sortData("location")}
                 className="w-16 text-center px-1 py-1"
               >
                 Location
@@ -139,7 +167,7 @@ function Orders() {
                 Phone
               </th>
               <th
-                // onClick={() => sortData("dob")}
+                onClick={() => sortData("dob")}
                 className="w-16 text-center px-1 py-1"
               >
                 Date of birth
@@ -158,32 +186,28 @@ function Orders() {
               return (
                 <tr key={index} className="items-center bb-1">
                   <td className=" w-16 px-1 py-2 text-center bb-1">
-                    {record.name.title}. {record.name.first} {record.name.last}
+                    {record.name}
                   </td>
 
-                  <td className="px-1 text-center bb-1">
-                    {record.login.username}
-                  </td>
+                  <td className="px-1 text-center bb-1">{record.username}</td>
 
                   <td className="px-1 text-center bb-1">{record.email}</td>
 
                   <td className="px-1 text-center bb-1">
-                    <p>{record.location.street.name}</p>
-                    <span className="fs-small color-text-secondary">
+                    <p>{record.location}</p>
+                    {/* <span className="fs-small color-text-secondary">
                       {record.location.city}
-                    </span>
+                    </span> */}
                   </td>
 
                   <td className=" px-1 text-center bb-1">
                     <p>{record.phone}</p>
-                    <span className="fs-small color-text-secondary">
+                    {/* <span className="fs-small color-text-secondary">
                       {record.cell}
-                    </span>
+                    </span> */}
                   </td>
 
-                  <td className=" px-1 text-center bb-1">
-                    {record.dob.date} ({record.dob.age})
-                  </td>
+                  <td className=" px-1 text-center bb-1">{record.dob}</td>
 
                   <td className=" px-1 text-center bb-1">
                     {record.gender}

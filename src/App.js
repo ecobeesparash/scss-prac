@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="app d-flex w-100 mx-auto">
       {/* <Login/> */}
-      <Normalize />
+      {/* <Normalize /> */}
       <Sidenav />
       <OrderPage />
       {/* <DataFetch /> */}

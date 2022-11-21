@@ -11,6 +11,7 @@ function Normalize() {
         const pagination = data.info;
         const results = data.results.map((item) => {
           return {
+            username: `${item.login.username}`,
             email: item.email,
             name: `${item.name.title} ${item.name.first} ${item.name.last}`,
             location: `${item.location.city} - ${item.location.street.name}`,
@@ -32,10 +33,8 @@ function Normalize() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log({
-    results,
-    pagination,
-  });
+  console.log(results);
+  console.log(pagination);
 
   return <div>Normalize</div>;
 }
