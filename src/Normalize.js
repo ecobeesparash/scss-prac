@@ -1,17 +1,41 @@
 import React from "react";
-// import normalize from "normalize-json-api-response";
 
 function Normalize() {
-  const [apiData, setApiData] = React.useState([]);
+  const [results, setResults] = React.useState([]);
+  const [pagination, setPagination] = React.useState({});
 
   React.useEffect(() => {
     fetch("https://randomuser.me/api/?results=5")
       .then((res) => res.json())
-      .then((data) => setApiData(data.results))
+      .then((data) => {
+        const pagination = data.info;
+        const results = data.results.map((item) => {
+          return {
+            email: item.email,
+            name: `${item.name.title} ${item.name.first} ${item.name.last}`,
+            location: `${item.location.city} - ${item.location.street.name}`,
+            dob: item.dob.date,
+            gender: item.gender,
+            phone: item.phone,
+          };
+        });
+
+        return {
+          pagination,
+          results,
+        };
+      })
+      .then(({ pagination, results }) => {
+        setPagination(pagination);
+        setResults(results);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(apiData);
+  console.log({
+    results,
+    pagination,
+  });
 
   return <div>Normalize</div>;
 }
