@@ -1,38 +1,20 @@
 import React, { useState } from "react";
 // import StatusButton from "../../core/StatusButton";
 import Icons from "../../../assets/Icons";
+import ReactHtmlTableToExcel from "react-html-table-to-excel";
 
-const tableHead = [
-  "Full Name",
-  "Username",
-  "Email",
-  "Location",
-  "Phone",
-  "Date Of Birth (Age)",
-  "Gender",
-];
-
-const dataHead = [
-  // "first",
-  // "name.last",
-  "gender",
-  "email",
-  // "dob.date",
-  "cell",
-  "phone",
-  // "location.city",
-];
+const dataHead = ["gender", "email", "cell", "phone"];
 
 function Orders() {
   const [search, setSearch] = useState("");
 
+  //fetch api data
   const [info, setInfo] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("https://randomuser.me/api/?results=20")
+    fetch("https://randomuser.me/api/?results=5")
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data.results);
         setInfo(data.results);
       })
       .catch((err) => {
@@ -40,9 +22,31 @@ function Orders() {
       });
   }, []);
 
+  const [order, setOrder] = React.useState("asc");
+
+  const sortData = (column) => {
+    if (order === "asc") {
+      const sorted = [...info].sort((a, b) =>
+        a[column].toLowerCase() > b[column].toLowerCase() ? 1 : -1
+      );
+      setInfo(sorted);
+      setOrder("desc");
+    }
+    if (order === "desc") {
+      const sorted = [...info].sort((a, b) =>
+        a[column].toLowerCase() < b[column].toLowerCase() ? 1 : -1
+      );
+      setInfo(sorted);
+      setOrder("asc");
+    }
+  };
+
   const filterData = (data) => {
     return data.filter((item) =>
-      dataHead.some((key) => item[key].toLowerCase().includes(search))
+      dataHead.some((key) =>
+        // console.log(key)
+        item[key].toLowerCase().includes(search)
+      )
     );
   };
 
@@ -51,17 +55,11 @@ function Orders() {
       <div className="o-ordersMain__div border-26 mx-2 py-2 px-3 bgcolor-bg-primary ">
         <div className="m-orderStatus__div d-flex justify-space-between items-flex-end">
           <ul className="a-orderStatusList__list d-flex gap-30 fs-regular fw-medium">
-            <li>All Orders</li>
-
-            <li className=" ">All Orders</li>
-
-            <li>All Orders</li>
-
-            <li className=" ">All Orders</li>
+            <li>All Users</li>
           </ul>
 
           <p className="fs-small color-text-secondary">
-            Showing 8-10 out of 80 results
+            Showing {info.length} results
           </p>
         </div>
 
@@ -81,99 +79,119 @@ function Orders() {
                 {Icons.ListIcon}
               </button>
               <button className="w-50 b-none border-tr-14 border-br-14 fs-medium bgcolor-bg-primary color-text-secondary d-flex justify-center">
-                {Icons.GridIcon}{" "}
+                {Icons.GridIcon}
               </button>
             </div>
 
-            <button className=" b-1 px-1 border-14 bgcolor-bg-primary color-text-secondary fs-regular d-flex items-center">
+            {/* <button className=" b-1 px-1 border-14 bgcolor-bg-primary color-text-secondary fs-regular d-flex items-center">
               {Icons.FilterIcon} <span className="pl-1">Filter</span>
-            </button>
+            </button> */}
 
-            <button className=" b-1 px-1 border-14 bgcolor-bg-primary color-text-secondary fs-regular d-flex items-center">
+            <ReactHtmlTableToExcel
+              id="table-xls-button"
+              className="download-table-xls-button b-1 px-1 border-14 bgcolor-bg-primary color-text-secondary fs-medium d-flex items-center"
+              table="customer-table"
+              filename="customers-details"
+              sheet="Customers-details"
+              buttonText={Icons.ExportIcon}
+            />
+
+            {/* <button className=" b-1 px-1 border-14 bgcolor-bg-primary color-text-secondary fs-regular d-flex items-center">
               {Icons.ExportIcon} <span className="pl-1">Export</span>
-            </button>
+            </button> */}
           </ul>
         </form>
 
-        <table className="m-tableInfo__table w-100 b-1 border-10">
+        <table
+          className="m-tableInfo__table w-100 border-10"
+          id="customer-table"
+        >
           <thead>
             <tr className="a-tableHead__text bgcolor-bg-secondary border-6 ">
-              {tableHead.map((head) => {
-                return <th className="w-16 text-center px-1 py-1">{head}</th>;
-              })}
+              <th
+                onClick={() => sortData("fname")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Full Name
+              </th>
+              <th
+                // onClick={() => sortData("username")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Username
+              </th>
+              <th
+                onClick={() => sortData("email")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Email
+              </th>
+              <th
+                // onClick={() => sortData("location")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Location
+              </th>
+              <th
+                onClick={() => sortData("phone")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Phone
+              </th>
+              <th
+                // onClick={() => sortData("dob")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Date of birth
+              </th>
+              <th
+                onClick={() => sortData("gender")}
+                className="w-16 text-center px-1 py-1"
+              >
+                Gender
+              </th>
             </tr>
           </thead>
 
           <tbody>
-            {filterData(info).map((record) => {
+            {filterData(info).map((record, index) => {
               return (
-                <tr key={record.id} className="items-center bb-1">
-                  <td className=" w-16 px-1 py-2 text-center">
+                <tr key={index} className="items-center bb-1">
+                  <td className=" w-16 px-1 py-2 text-center bb-1">
                     {record.name.title}. {record.name.first} {record.name.last}
                   </td>
 
-                  <td className="px-1 text-center">{record.login.username}</td>
+                  <td className="px-1 text-center bb-1">
+                    {record.login.username}
+                  </td>
 
-                  <td className="px-1 text-center">{record.email}</td>
+                  <td className="px-1 text-center bb-1">{record.email}</td>
 
-                  <td className="px-1 text-center">
-                    <p>{record.location.state}</p>
+                  <td className="px-1 text-center bb-1">
+                    <p>{record.location.street.name}</p>
                     <span className="fs-small color-text-secondary">
                       {record.location.city}
                     </span>
                   </td>
 
-                  <td className=" px-1 text-center">
+                  <td className=" px-1 text-center bb-1">
                     <p>{record.phone}</p>
                     <span className="fs-small color-text-secondary">
                       {record.cell}
                     </span>
                   </td>
 
-                  <td className=" px-1 text-center">
+                  <td className=" px-1 text-center bb-1">
                     {record.dob.date} ({record.dob.age})
                   </td>
 
-                  <td className=" px-1 text-center">
+                  <td className=" px-1 text-center bb-1">
                     {record.gender}
                     {/* <StatusButton status={record.status} /> */}
                   </td>
                 </tr>
               );
             })}
-
-            {/* {filterData(info).map((record) => {
-              return (
-                <tr
-                  key={record.id}
-                  className="d-flex justify-space-between items-center border-6 px-2 py-1 bb-1"
-                >
-                  <td className="w-16 text-left">{record.id}</td>
-
-                  <td className="w-16 text-left">{record.customer}</td>
-
-                  <td className="w-16 text-left">
-                    <p>{record.country}</p>
-                    <span className="fs-small color-text-secondary">
-                      {record.address}
-                    </span>
-                  </td>
-
-                  <td className="w-16 text-left">
-                    <p>{record.product}</p>
-                    <span className="fs-small color-text-secondary">
-                      {record.detail}
-                    </span>
-                  </td>
-
-                  <td className="w-16 text-left">{record.date}</td>
-
-                  <td className="w-16 text-left">
-                    <StatusButton status={record.status} />
-                  </td>
-                </tr>
-              );
-            })} */}
           </tbody>
         </table>
       </div>
