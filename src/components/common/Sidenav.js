@@ -7,7 +7,7 @@ import Img from "../../assets/logo.png";
 function Sidenav() {
   return (
     <>
-      <section className="o-sidenav__section px-2 py-3  w-14 h-100 bgcolor-bg-primary d-flex direction-column">
+      <section className="o-sidenav__section px-2 py-3  w-14 bgcolor-bg-primary d-flex direction-column">
         <p className="m-logo__text mb-4 d-flex items-center">
           <img className="a-logoImg__img  w-20 " src={Img} alt="logo" />
           &nbsp;

@@ -1,29 +1,27 @@
 import React from "react";
 
 function DataFetch() {
-  const [info, setInfo] = React.useState([]);
+  const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
     fetch("https://randomuser.me/api/?results=20")
-      .then((response) => {
-        console.log(response);
-        setInfo(response.data.results);
+      .then((response) => response.json())
+      .then((arr) => {
+        setData(arr.results);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
-  console.log(info);
+  console.log(data);
 
   return (
-    <>
-      <ul>
-        {info.map((data) => (
-          <li key={data.id}>{data.gender}</li>
-        ))}
-      </ul>
-    </>
+    <div>
+      {data.map((info) => (
+        <li>{info.email}</li>
+      ))}
+    </div>
   );
 }
 
