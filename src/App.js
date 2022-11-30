@@ -1,5 +1,4 @@
 import "./App.css";
-import Normalize from "./Normalize";
 import Sidenav from "./components/common/Sidenav";
 // import Login from "./components/common/Login";
 import OrderPage from "./components/pages/orders/OrderPage";
