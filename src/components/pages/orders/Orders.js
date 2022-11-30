@@ -15,6 +15,7 @@ const dataHead = [
 
 function Orders() {
   const [search, setSearch] = useState("");
+  // const [search1, setSearch1] = useState("");
 
   //fetch api data
   const [info, setInfo] = React.useState([]);
@@ -48,8 +49,6 @@ function Orders() {
       });
   }, []);
 
-  console.log(info);
-
   const [order, setOrder] = React.useState("asc");
 
   const sortData = (column) => {
@@ -69,14 +68,15 @@ function Orders() {
     }
   };
 
+  console.log(info);
+
   const filterData = (data) => {
     return data.filter((item) =>
-      dataHead.some((key) =>
-        // console.log(key)
-        item[key].toLowerCase().includes(search)
-      )
+      dataHead.some((key) => item[key].toLowerCase().includes(search))
     );
   };
+
+  console.log(filterData(info));
 
   return (
     <>
@@ -195,24 +195,15 @@ function Orders() {
 
                   <td className="px-1 text-center bb-1">
                     <p>{record.location}</p>
-                    {/* <span className="fs-small color-text-secondary">
-                      {record.location.city}
-                    </span> */}
                   </td>
 
                   <td className=" px-1 text-center bb-1">
                     <p>{record.phone}</p>
-                    {/* <span className="fs-small color-text-secondary">
-                      {record.cell}
-                    </span> */}
                   </td>
 
                   <td className=" px-1 text-center bb-1">{record.dob}</td>
 
-                  <td className=" px-1 text-center bb-1">
-                    {record.gender}
-                    {/* <StatusButton status={record.status} /> */}
-                  </td>
+                  <td className=" px-1 text-center bb-1">{record.gender}</td>
                 </tr>
               );
             })}
